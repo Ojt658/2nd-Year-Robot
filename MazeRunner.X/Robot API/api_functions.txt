@@ -1,0 +1,791 @@
+
+/*
+ * FA_RobotInit ()
+ * 
+ * Initialise robot
+ *     Call this before any other robot functions
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_SetMotors (left, right)
+ * 
+ * Set motor power
+ *
+ * Arguments:
+ *     (signed short) left  : Left motor power (0 - 100)
+ *     (signed short) right : Right motor power (0 - 100)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_Forwards (distance)
+ * 
+ * Drive forwards specified distance using encoders
+ *     NOTE: Blocking function - does not return until movement finished
+ *
+ * Arguments:
+ *     (unsigned short) distance : Distance to drive, in mm (0 - 1000)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_Backwards (distance)
+ * 
+ * Drive backwards specified distance using encoders
+ *     NOTE: Blocking function - does not return until movement finished
+ *
+ * Arguments:
+ *     (unsigned short) distance : Distance to drive, in mm (0 - 1000)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_Right (angle)
+ * 
+ * Turn right through specified angle using encoders
+ *     NOTE: Blocking function - does not return until movement finished
+ *
+ * Arguments:
+ *     (unsigned short) angle : Angle to turn through, in degrees (0 - 360)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_Left (angle)
+ * 
+ * Turn left through specified angle (degrees) using encoders
+ *     NOTE: Blocking function - does not return until movement finished
+ *
+ * Arguments:
+ *     (unsigned short) angle : Angle to turn through, in degrees (0 - 360)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_SetDriveSpeed (speed)
+ * 
+ * Set motor speed for 'Drive' and 'Turn' functions (using encoders)
+ *
+ * Arguments:
+ *     (unsigned char) speed : Motor power (0 - 100)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_ReadEncoder (channel)
+ * 
+ * Read wheel encoder current value
+ *
+ * Arguments:
+ *     (unsigned char) channel : 0 = left encoder, 1 = right
+
+ * Returns:
+ *     (unsigned short) : Wheel encoder tick value
+ *     NOTE: Encoder value only increases, even if going backwards
+ */
+
+
+/*
+ * FA_ResetEncoders ()
+ * 
+ * Reset both wheel encoders to zero
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDNumber (number, x, y, font, transparent)
+ * 
+ * Print a decimal number to the Graphical LCD.
+ *
+ * Arguments:
+ *     (signed short) number : number to print
+ *     (unsigned short) x : horizontal coordinate to print at (0 - 127)
+ *     (unsigned short) y : vertical coordinate to print at (0 - 31)
+ *     (unsigned char) font : size of font to use -
+ *          choose from: FONT_NORMAL (0), FONT_DOUBLE_WIDTH (1),
+ *                       FONT_DOUBLE_HEIGHT (3), FONT_DOUBLE_WIDTH_HEIGHT (2)
+ *     (unsigned char) transparent :    LCD_OPAQUE (0) = fill background,
+ *                                      LCD_TRANSPARENT (1) = don't fill
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDPlot (x, y)
+ * 
+ * Set one pixel to current foreground colour
+ *
+ * Arguments:
+ *     (unsigned char) x : horizontal coordinate (0 - 127)
+ *     (unsigned char) y : vertical coordinate (0 - 31)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDBPlot (x, y)
+ * 
+ * Set one pixel to current background colour
+ *
+ * Arguments:
+ *     (unsigned char) x : horizontal coordinate (0 - 127)
+ *     (unsigned char) y : vertical coordinate (0 - 31)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDPrint (*str, size, x, y, font, transparent)
+ * 
+ * Print a string of characters to the Graphical LCD.
+ *
+ * Arguments:
+ *     (char) *str : string to print
+ *     (unsigned short) size : length of string
+ *          The string ends at a zero byte, or when <size> characters have been printed 
+ *     (unsigned short) x : x coordinate (0 - 127)
+ *     (unsigned short) y : y coordinate (0 - 31)
+ *     (unsigned char) font : font type (see FA_LCDNumber)
+ *     (unsigned char) transparent :    LCD_OPAQUE (0) = fill background,
+ *                                      LCD_TRANSPARENT (1) = don't fill
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDClear ()
+ * 
+ * Clear LCD display
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDBacklight (brightness)
+ * 
+ * Set LCD backlight brightness (0 - 100%)
+ *
+ * Arguments:
+ *     (unsigned char) brightness : 0 - 100
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDSetBackground (pixelcolour)
+ * 
+ * Set current background colour for drawing & printing
+ *
+ * Arguments:
+ *     (unsigned char) pixelcolour : LCD_WHITE = white (0), LCD_BLACK = black (1)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDSetForeground (pixelcolour)
+ * 
+ * Set current foreground colour for drawing & printing
+ *
+ * Arguments:
+ *     (unsigned char) pixelcolour : LCD_WHITE = white (0), LCD_BLACK = black (1)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDLine (x1, y1, x2, y2)
+ * 
+ * Draws a line with the current foreground colour from pixel location X1, Y1 to pixel location X2, Y2.
+ *
+ * Arguments:
+ *     (unsigned char) x1 : First x coordinate (0 - 127)
+ *     (unsigned char) y1 : First y coordinate (0 - 31)
+ *     (unsigned char) x2 : Second x coordinate (0 - 127)
+ *     (unsigned char) y2 : Second y coordinate (0 - 31)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LCDRectangle (x1, y1, x2, y2, transparent, solid)
+ * 
+ * Draws a rectangle with the current foreground colour from pixel location X1, Y1 to pixel location X2, Y2
+ *
+ * Arguments:
+ *     (unsigned char) x1 : First x coordinate (0 - 127)
+ *     (unsigned char) y1 : First y coordinate (0 - 31)
+ *     (unsigned char) x2 : Second x coordinate (0 - 127)
+ *     (unsigned char) y2 : Second y coordinate (0 - 31)
+ *     (unsigned char) transparent :    LCD_OPAQUE (0) = fill background,
+ *                                      LCD_TRANSPARENT (1) = don't fill
+ *     (unsigned char) solid : ?? 0 = outline, 1 = filled rectangle ??
+
+ * Returns:
+ *     -none-
+ */
+
+/*
+ * FA_LCDUnsigned (number, x, y, font, transparent)
+ *
+ * Prints an unsigned number on the LCD screen
+ *
+ * Arguments:
+ *     (unsigned long) number : number to print
+ *     (unsigned short) x : x coordinate (0 - 127)
+ *     (unsigned short) y : y coordinate (0 - 31)
+ *     (unsigned char) font : font type (see FA_LCDNumber)
+ *     (unsigned char) transparent :    LCD_OPAQUE (0) = fill background,
+ *                                      LCD_TRANSPARENT (1) = don't fill
+ *
+ * Returns:
+ *      -none-
+ */
+
+/*
+ * FA_ReadIR (channel)
+ * 
+ * Read an IR obstacle detector
+ *
+ * Arguments:
+ *     (unsigned char) channel : IR sensor to read (0 - 7)
+ *          Pre-defined symbolic constants :
+ *              IR_LEFT = 0
+ *              IR_FRONT_LEFT = 1
+ *              IR_FRONT = 2
+ *              IR_FRONT_RIGHT = 3
+ *              IR_RIGHT = 4
+ *              IR_REAR_RIGHT = 5
+ *              IR_REAR = 6
+ *              IR_REAR_LEFT = 7
+
+ * Returns:
+ *     (unsigned short) : IR reflectance value (0 - 4095)
+ */
+
+
+/*
+ * FA_ReadLight ()
+ * 
+ * Read the visible light sensor
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     (unsigned short) : Light level (0 - 4095)
+ */
+
+
+/*
+ * FA_ReadSwitch (switch)
+ * 
+ * Read pushbutton state
+ *
+ * Arguments:
+ *     (unsigned char) switch : Switch to read (0: left, 1: right)
+
+ * Returns:
+ *     (unsigned char) : 1 = pressed, 0 = not pressed
+ */
+
+
+/*
+ * FA_ReadSwitch0Debounced ()
+ * 
+ * Read switch 0 (left), with debounce code
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     (unsigned char) : 1 = pressed, 0 = not pressed
+ */
+
+
+/*
+ * FA_Switch0WaitHigh ()
+ * 
+ * Wait until switch 0 (left) pressed, with debounce code
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_Switch0WaitLow ()
+ * 
+ * Wait until switch 0 (left) NOT pressed, with debounce code
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_ReadSwitch1Debounced ()
+ * 
+ * Read switch 1 (right), with debounce code
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     (unsigned char) : 1 = pressed, 0 = not pressed
+ */
+
+
+/*
+ * FA_Switch1WaitHigh ()
+ * 
+ * Wait until switch 1 (right) pressed, with debounce code
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_Switch1WaitLow ()
+ * 
+ * Wait until switch 1 (right) NOT pressed, with debounce code
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_ReadMic ()
+ * 
+ * Read one sample from microphone
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     (unsigned short) : Microphone sample (0 - 4095)
+ */
+
+
+/*
+ * FA_PlayNote (note, time)
+ * 
+ * Make tone of specified frequency (Hz) and duration (milliseconds)
+ *     NOTE: Blocking function - does not return until note finished playing
+ *
+ * Arguments:
+ *     (unsigned short) note : Frequency of note in Hz (cycles per second)
+ *     (unsigned short) time : Duration of note (milliseconds)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LEDOn (led)
+ * 
+ * Switch on specified LED
+ *
+ * Arguments:
+ *     (unsigned char) led : LED number (0 - 7; 0 is leftmost)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LEDOff (led)
+ * 
+ * Switch off specified
+ *
+ * Arguments:
+ *     (unsigned char) led : LED number (0 - 7; 0 is leftmost)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_LEDWrite (led_byte)
+ * 
+ * Set all LEDs at once
+ *
+ * Arguments:
+ *     (unsigned char) led_byte : (8-bit value: 0 = off, 1 = on; bit 0 is leftmost)
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_ReadLine (channel)
+ * 
+ * Read specified line sensor
+ *
+ * Arguments:
+ *     (unsigned char) channel : (0 = left, 1 = right)
+
+ * Returns:
+ *     (unsigned short) : Line sensor IR reflectance level (0 - 4095)
+ */
+
+
+/*
+ * FA_ReadBattery ()
+ * 
+ * Read battery voltage
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     (unsigned short) : Battery voltage reading (0 - 4095)
+ *                        1 unit = 0.001611 volts
+ *                        602 units = 1 volt (approx)
+ */
+
+
+/*
+ * FA_DelayMicros (delay)
+ * 
+ * Delay specified number of microseconds
+ *     NOTE: Blocking function - does not return until delay finished
+ *
+ * Arguments:
+ *     (unsigned short) delay : Delay time in microseconds
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_DelayMillis (delay)
+ * 
+ * Delay specified number of milliseconds
+ *     NOTE: Blocking function - does not return until delay finished
+ *
+ * Arguments:
+ *     (unsigned short) delay : Delay time in milliseconds
+
+ * Returns:
+ *     -none-
+ */
+
+
+/*
+ * FA_DelaySecs (delay)
+ * 
+ * Delay specified number of seconds
+ *     NOTE: Blocking function - does not return until delay finished
+ *
+ * Arguments:
+ *     (unsigned short) delay : Delay time in seconds
+
+ * Returns:
+ *     -none-
+ */
+
+/*
+ * FA_ClockMS ()
+ *
+ * Return system time in milliseconds
+ *
+ * Arguments:
+ *     -none-
+
+ * Returns:
+ *     (unsigned long) : Time since program started, in milliseconds
+ */
+ 
+ /*
+  * FA_CompassInit ()
+  *
+  * Initialise eCompass (magnetometer & accelerometer)
+  * Default setup:
+  *
+  *     Mag sample rate: 12.5 Hz
+  *     Mag scale: +/- 8 gauss
+  *     Acc sample rate: 50 Hz
+  *     Acc scale: +/- 2g
+  *
+  * Arguments:
+  *     -none-
+  *
+  * Returns:
+  *     -none-
+  */
+  
+/* 
+ * FA_ReadMag (axes)
+ *
+ * Read magnetometer data
+ *
+ * Arguments:
+ *    (int *) axes: array of 3 ints: X, Y and Z data
+ *      declare as: int axes[3]
+ *      call as: FA_ReadMag(axes)
+ * 
+ * Returns:
+ *  (unsigned char) : 0 if no new data since last read
+ *                      (axes array NOT updated)
+ *                    1 if new data was available
+ *                      (axes array updated)
+ */
+ 
+/*
+ * FA_ReadAccel (axes)
+ *
+ * Read accelerometer data
+ * 
+ * Arguments:
+ *  (int *) axes: array of 3 ints: X, Y and Z data
+ *      declare as: int axes[3]
+ *      call as: FA_ReadAccel(axes)
+ * 
+ * Returns:
+ *  (unsigned char) : 0 if no new data since last read
+ *                      (axes array NOT updated)
+ *                    1 if new data was available
+ *                      (axes array updated)
+ */
+
+ 
+ /*
+  * FA_ConfigureAccel (rate, scale)
+  *
+  * Set sample rate and scale for accelerometer
+  *
+  * Arguments:
+  *  (unsigned char) rate: sample rate
+  *             0: POWERED DOWN (special case)
+  *             1: 3.125 Hz
+  *             2: 6.25 Hz
+  *             3: 12.5 Hz
+  *             4: 25 Hz
+  *             5: 50 Hz (default on CompassInit())
+  *             6: 100 Hz
+  *             7: 200 Hz
+  *             8: 400 Hz
+  *             9: 800 Hz
+  *             10: 1600 Hz
+  * 
+  *  (unsigned char) scale: full scale value
+  *             0: +/- 2g (default on CompassInit())
+  *             1: +/- 4g
+  *             2: +/- 6g
+  *             3: +/- 8g
+  *             4: +/- 16g
+  *
+  * Returns:
+  *  (unsigned char) : 0: okay, success
+  *                    1: invalid parameter value or combination
+  *                  255: error writing to eCompass
+  * 
+  */
+
+/*
+ * FA_ConfigureMag (rate, scale)
+ *
+ * Set sample rate and scale for magnetometer
+ * 
+  * Arguments:
+  *
+  *  (unsigned char) rate: sample rate index
+  *             0: POWERED DOWN (special case)
+  *             1: 3.125 Hz
+  *             2: 6.25 Hz
+  *             3: 12.5 Hz (default on CompassInit())
+  *             4: 25 Hz
+  *             5: 50 Hz
+  *             6: 100 Hz*
+  *             (* 100 Hz only available if Acc rate > 50 Hz, or Acc powered down)
+  *
+  *  (unsigned char) scale: full scale index
+  *             0: +/- 2 gauss
+  *             1: +/- 4 gauss
+  *             2: +/- 8 gauss (default on CompassInit())
+  *             3: +/- 12 gauss
+  *
+  * Returns:
+  *  (unsigned char) : 0: okay, success
+  *                    1: invalid parameter value or combination
+  *                  255: error writing to eCompass
+  */
+  
+  
+/* Check connection - are we paired with something? 0 = no, 1 = yes */
+
+/*
+ * FA_BTConnected ()
+ *
+ * Check if BlueTooth connected (paired with some device)
+ *
+ * Arguments:
+ *      -none-
+ *
+ * Returns:
+ *  (unsigned char) : 0 = not connected / not paired
+ *                    1 = paired and connected
+ *
+ */
+
+ 
+/*
+ * FA_BTSendByte (data)
+ *
+ * Send one byte via BlueTooth serial connection
+ * 
+ * Note: Call may block if previous data still transmitting
+ *
+ * Arguments:
+ *  (unsigned char) data : byte to be sent
+ *
+ * Returns:
+ *      -none-
+ */
+
+/*
+ * FA_BTSendString (string, size)
+ *
+ * Send a string of chars via BlueTooth serial connection
+ *
+ * Note: Call may block if previous data still transmitting
+ *
+ * Arguments:
+ *  (char *) string : zero-terminated string of chars to send
+ *  (unsigned int) size : maximum size of string to send
+ *  Transmission ends at zero byte or when <size> chars have
+ *      been sent, whichever comes first
+ *
+ * Returns:
+ *      -none-
+ */
+ 
+/*
+ * FA_BTSendNumber (number)
+ *
+ * Format and send a signed int via BlueTooth serial connection
+ *
+ * Note: Call may block if previous data still transmitting
+ *
+ * Arguments:
+ *  (int) number : number to be sent
+ *
+ * Returns:
+ *      -none-
+ */
+
+/*
+ * FA_BTSendUnsigned (ulong)
+ *
+ * Format and send an unsigned number via BlueTooth serial connection
+ *
+ * Note: Call may block if previous data still transmitting
+ *
+ * Arguments:
+ *  (unsigned long) ulong : unsigned number to be sent
+ *
+ * Returns:
+ *      -none-
+ */
+
+/*
+ * FA_BTGetByte ()
+ *
+ * Get one byte from BlueTooth receive buffer
+ *
+ * The BlueTooth receive buffer is managed in the background by a serial
+ * interrupt routine and can contain up to 4095 bytes.
+ *
+ * Arguments:
+ *      -none-
+ *
+ * Returns:
+ *  (int) data : 0 - 255 : next byte read from receive buffer
+ *                    -1 : no data was available to be read
+ *               NOTE that the return value is a signed int!
+ */
+ 
+/*
+ * FA_BTAvailable ()
+ *
+ * Get number of bytes waiting in BlueTooth receive buffer
+ *
+ * Arguments:
+ *      -none-
+ *
+ * Returns:
+ *  (unsigned int) : Number of bytes in receive buffer, or 0 if empty
+ *
+ */
